@@ -1,0 +1,195 @@
+{
+    "name": "Application",
+    "fields": [
+        {
+            "fieldName": "status",
+            "fieldType": "ApplicationStatus",
+            "fieldValues": "NEW,UNDER_PROCESSING,COMPLETED,REJECTED",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "statusDescription",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "statusDate",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "activePhase",
+            "fieldType": "PhaseType",
+            "fieldValues": "CUSTOMER_ELIGIBILITY,DRIVING_LEARNING_FILE_PROCESSING,DRIVING_LEARNING_FILE_AUDIT,READY_FOR_CONTRACT_SIGN,EYE_TEST,THEORY_LECTURE,KNOWLEDGE_TEST,PRACTICAL_TRAINING,YARD_TEST,ADVANCED_PRACTICAL_TRAINING,ROAD_TEST,PRINT_LICENSE,APPLICATION_REJECTION,EXEMPTION_AUDITING,GET_REQUEST_DETAILS,CREATE_USER_DELIVERY,HUMAN_TASK_APPROVAL",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "confirmedBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "confirmationDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "rejectedBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "rejectionReason",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "rejectionDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "processInstanceId",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "unique"
+            ]
+        },
+        {
+            "fieldName": "channelCode",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "channelDescription",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "customerId",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "englishCustomerName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "arabicCustomerName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "tradeLicenseNo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "englishCorporateName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "arabicCorporateName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "userType",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "userTypeDescription",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "userRole",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "applicationCriteria",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "persona",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "personaVersion",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createdBy",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "createdDate",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "lastModifiedBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "lastModifiedDate",
+            "fieldType": "Instant"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "applicationPhase",
+            "otherEntityRelationshipName": "application",
+            "relationshipName": "applicationPhase"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "serviceRequest",
+            "otherEntityRelationshipName": "application",
+            "relationshipName": "serviceRequest"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "applicationViolation",
+            "otherEntityRelationshipName": "application",
+            "relationshipName": "applicationViolation"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "applicationType",
+            "otherEntityRelationshipName": "application",
+            "relationshipName": "applicationType",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200315142200",
+    "javadoc": "Application (dls_application) entity.\\n@author Ibrahim Hassanin.",
+    "entityTableName": "appl",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "amanDLSMS",
+    "applications": "*",
+    "microserviceName": "amanDLSMS"
+}
