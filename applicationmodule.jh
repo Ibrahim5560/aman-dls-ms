@@ -1,0 +1,178 @@
+/**
+ * Application (dls_application) entity.
+ * @author Ibrahim Hassanin.
+ */
+entity Application (appl) {
+    status ApplicationStatus required,
+    statusDescription String required,
+    statusDate Instant required,
+    activePhase PhaseType required,
+    confirmedBy String,
+    confirmationDate Instant,
+    rejectedBy String,
+    rejectionReason String,
+    rejectionDate Instant,
+    processInstanceId Long unique,
+    channelCode String required,
+    channelDescription String required,
+    customerId String,
+    englishCustomerName String ,
+	arabicCustomerName String ,
+	tradeLicenseNo String ,
+	englishCorporateName String ,
+	arabicCorporateName String ,
+    userType String required,
+    userTypeDescription String required,
+    userRole String required,
+    applicationCriteria String,
+	persona String ,
+	personaVersion String ,
+	createdBy String required,
+	createdDate Instant required,
+	lastModifiedBy String ,
+	lastModifiedDate Instant 
+}
+
+enum ApplicationStatus {
+    NEW, 
+    UNDER_PROCESSING, 
+    COMPLETED,
+    REJECTED
+}
+
+/**
+ * ApplicationType entity.
+ * @author Ibrahim Hassanin.
+ */
+entity ApplicationType (apty) {
+	code String required,
+	description String required,
+	summary String required,
+	status String required,
+	sortOrder Long required unique,
+	createdBy String required,
+	createdDate Instant required,
+	lastModifiedBy String ,
+	lastModifiedDate Instant 
+}
+
+
+/**
+ * ApplicationPhase (dls_application_phase) entity.
+ * @author Ibrahim Hassanin.
+ */
+entity ApplicationPhase (apph) {
+	type PhaseType required,
+    sequence Integer required,
+    startDate Instant required,
+    endDate Instant,
+    persona String required
+}
+
+enum PhaseType {
+    CUSTOMER_ELIGIBILITY, 
+    DRIVING_LEARNING_FILE_PROCESSING, 
+    DRIVING_LEARNING_FILE_AUDIT,
+    READY_FOR_CONTRACT_SIGN,
+    EYE_TEST,
+    THEORY_LECTURE,
+    KNOWLEDGE_TEST,
+    PRACTICAL_TRAINING,
+    YARD_TEST,
+    ADVANCED_PRACTICAL_TRAINING,
+    ROAD_TEST,
+    PRINT_LICENSE,
+    APPLICATION_REJECTION,
+    EXEMPTION_AUDITING,
+    GET_REQUEST_DETAILS,
+    CREATE_USER_DELIVERY,
+    HUMAN_TASK_APPROVAL
+}
+
+/**
+ * ServiceRequest (service_request) entity.
+ * @author Ibrahim Hassanin.
+ */
+entity ServiceRequest (sere) {
+    serviceDocument TextBlob,
+    feeDocument TextBlob,
+    serviceCode String required,
+    phaseType PhaseType required,
+    status ServiceRequestStatus required,
+    statusDescription String required,
+    statusDate Instant required,
+    totalFeeAmount Double,
+    paidBy String,
+    paymentMethod Integer,
+    paymentReference Long,
+    paymentDate Instant,
+    rejectedBy String,
+    rejectionReason String,
+    rejectionDate Instant,
+    processInstanceId Long
+}
+
+enum ServiceRequestStatus {
+    UNDER_PROCESSING, 
+    VERIFIED_AND_LOCKED,
+    CONFIRMED,
+    REJECTED
+}
+
+/**
+ * ApplicationViolation (dls_application_violation) entity.
+ * @author Ibrahim Hassanin.
+ */
+entity ApplicationViolation (apvi) {
+	code String required,
+    isEligibleForExemption Boolean required,
+    isExempted Boolean required,
+    level ViolationLevel required,
+    exemptionProcessId Long,
+    exemptedBy String,
+    exemptionDate Instant
+}
+
+enum ViolationLevel {
+	BLOCKER,
+    WARNING,
+    INFO
+}
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany { 
+    Application{applicationPhase} to ApplicationPhase,
+    ServiceRequest{applicationViolation} to ApplicationViolation,
+    Application{serviceRequest} to ServiceRequest,
+    Application{applicationViolation} to ApplicationViolation
+}
+
+// defining multiple ManyToOne relationships with comments
+relationship ManyToOne {
+    ServiceRequest{reversedBy} to ServiceRequest,
+	Application{applicationType} to ApplicationType
+}
+
+
+// Set pagination options
+paginate Application with pagination
+paginate ApplicationPhase with pagination
+paginate ServiceRequest with pagination
+paginate ApplicationViolation with pagination
+paginate ApplicationType with pagination
+
+// Use Data Transfert Objects (DTO)
+dto * with mapstruct
+
+// Set service options 
+service all with serviceImpl
+
+
+microservice * with amanDLSMS
+filter all
+clientRootFolder Application with amanDLSMS
+clientRootFolder ApplicationPhase with amanDLSMS
+clientRootFolder ServiceRequest with amanDLSMS
+clientRootFolder ApplicationViolation with amanDLSMS
+clientRootFolder ApplicationType with amanDLSMS
+
