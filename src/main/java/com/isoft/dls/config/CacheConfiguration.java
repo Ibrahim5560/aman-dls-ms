@@ -38,6 +38,10 @@ public class CacheConfiguration {
     @Bean
     public JCacheManagerCustomizer cacheManagerCustomizer() {
         return cm -> {
+            createCache(cm, com.isoft.dls.domain.ApplicationType.class.getName());
+            createCache(cm, com.isoft.dls.domain.Application.class.getName());
+            createCache(cm, com.isoft.dls.domain.ApplicationPhase.class.getName());
+            createCache(cm, com.isoft.dls.domain.ApplicationViolation.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }
