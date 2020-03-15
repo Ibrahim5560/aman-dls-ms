@@ -1,0 +1,161 @@
+{
+    "name": "Application",
+    "fields": [
+        {
+            "fieldName": "status",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "statusDescription",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
+        },
+        {
+            "fieldName": "statusDate",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "activePhase",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "confirmedBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "confirmationDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "rejectedBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "rejectionReason",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "rejectionDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "processInstanceId",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "unique"
+            ]
+        },
+        {
+            "fieldName": "channelCode",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "userId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "englishCustomerName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "arabicCustomerName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "tradeLicenseNo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "englishCorporateName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "arabicCorporateName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "userType",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "userTypeDescription",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
+        },
+        {
+            "fieldName": "userRole",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "applicationCriteria",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
+        },
+        {
+            "fieldName": "applicationTypeId",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "persona",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "personaVersion",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createdBy",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "createdDate",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "lastModifiedBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "lastModifiedDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "synchedEntityId",
+            "fieldType": "Long"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20200315121800",
+    "entityTableName": "application",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "amanDLSMS",
+    "applications": "*",
+    "microserviceName": "amanDLSMS"
+}
