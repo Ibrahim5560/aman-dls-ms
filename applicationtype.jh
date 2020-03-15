@@ -1,0 +1,98 @@
+//-----------------------------------------------------------------------ApplicationType
+entity ApplicationType {
+	code String required unique,
+	description Blob required,
+	summary Blob required,
+	status String required,
+	sortOrder Long required unique,
+	createdBy String required,
+	createdDate Instant required,
+	lastModifiedBy String ,
+	lastModifiedDate Instant 
+}
+dto ApplicationType with mapstruct
+paginate ApplicationType with pagination
+service ApplicationType with serviceImpl
+microservice ApplicationType with amanDLSMS
+filter ApplicationType
+clientRootFolder ApplicationType with amanDLSMS
+//-----------------------------------------------------------------------Application
+entity Application {
+	status String ,
+	statusDescription Blob ,
+	statusDate Instant required,
+	activePhase String ,
+	confirmedBy String ,
+	confirmationDate Instant ,
+	rejectedBy String ,
+	rejectionReason String ,
+	rejectionDate Instant ,
+	processInstanceId Long unique,
+	channelCode String required,
+	userId Long ,
+	englishCustomerName String ,
+	arabicCustomerName String ,
+	tradeLicenseNo String ,
+	englishCorporateName String ,
+	arabicCorporateName String ,
+	userType String required,
+	userTypeDescription Blob ,
+	userRole String required,
+	applicationCriteria Blob ,
+	applicationTypeId Long required,
+	persona String ,
+	personaVersion String ,
+	createdBy String required,
+	createdDate Instant required,
+	lastModifiedBy String ,
+	lastModifiedDate Instant ,
+	synchedEntityId Long 
+}
+dto Application with mapstruct
+paginate Application with pagination
+service Application with serviceImpl
+microservice Application with amanDLSMS
+filter Application
+clientRootFolder Application with amanDLSMS
+//-----------------------------------------------------------------------ApplicationPhase
+entity ApplicationPhase {
+	phaseType String required,
+	phaseSequence Long required unique,
+	startDate Instant required,
+	endDate Instant,
+	persona String ,
+	applicationId Long required unique,
+	createdBy String required,
+	createdDate Instant required,
+	lastModifiedBy String ,
+	lastModifiedDate Instant
+}
+dto ApplicationPhase with mapstruct
+paginate ApplicationPhase with pagination
+service ApplicationPhase with serviceImpl
+microservice ApplicationPhase with amanDLSMS
+filter ApplicationPhase
+clientRootFolder ApplicationPhase with amanDLSMS
+//-----------------------------------------------------------------------ApplicationViolation
+entity ApplicationViolation {
+	code String required,
+	isEligibleForExemption Long required,
+	isExempted Long required,
+	violationLevel String required,
+	exemptionProcessId Long ,
+	exemptedBy String ,
+	exemptionDate Instant ,
+	applicationId Long required,	
+	createdBy String required,
+	createdDate Instant required,
+	lastModifiedBy String ,
+	lastModifiedDate Instant
+}
+dto ApplicationViolation with mapstruct
+paginate ApplicationViolation with pagination
+service ApplicationViolation with serviceImpl
+microservice ApplicationViolation with amanDLSMS
+filter ApplicationViolation
+clientRootFolder ApplicationViolation with amanDLSMS
+
+
