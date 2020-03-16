@@ -19,10 +19,13 @@
     <include file="config/liquibase/changelog/20200315142400_added_entity_ApplicationPhase.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200315142500_added_entity_ServiceRequest.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200315142600_added_entity_ApplicationViolation.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200316115737_added_entity_SysDomain.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200316115738_added_entity_SysDomainValue.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20200315142200_added_entity_constraints_Application.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200315142400_added_entity_constraints_ApplicationPhase.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200315142500_added_entity_constraints_ServiceRequest.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200315142600_added_entity_constraints_ApplicationViolation.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200316115738_added_entity_constraints_SysDomainValue.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

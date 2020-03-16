@@ -6,12 +6,12 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    
+
     <!--
         Added the entity Application.
     -->
     <changeSet id="20200315142200-1" author="jhipster">
-        <createTable tableName="appl" remarks="Application (dls_application) entity.\n@author Ibrahim Hassanin.">
+        <createTable tableName="dls_application" remarks="Application (dls_application) entity.\n@author Ibrahim Hassanin.">
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -104,11 +104,11 @@
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-        <dropDefaultValue tableName="appl" columnName="status_date" columnDataType="datetime"/>
-        <dropDefaultValue tableName="appl" columnName="confirmation_date" columnDataType="datetime"/>
-        <dropDefaultValue tableName="appl" columnName="rejection_date" columnDataType="datetime"/>
-        <dropDefaultValue tableName="appl" columnName="created_date" columnDataType="datetime"/>
-        <dropDefaultValue tableName="appl" columnName="last_modified_date" columnDataType="datetime"/>
+        <dropDefaultValue tableName="dls_application" columnName="status_date" columnDataType="datetime"/>
+        <dropDefaultValue tableName="dls_application" columnName="confirmation_date" columnDataType="datetime"/>
+        <dropDefaultValue tableName="dls_application" columnName="rejection_date" columnDataType="datetime"/>
+        <dropDefaultValue tableName="dls_application" columnName="created_date" columnDataType="datetime"/>
+        <dropDefaultValue tableName="dls_application" columnName="last_modified_date" columnDataType="datetime"/>
     </changeSet>
 
     <changeSet id="20200315142200-1-relations" author="jhipster">
@@ -128,7 +128,7 @@
         <loadData
                   file="config/liquibase/fake-data/appl.csv"
                   separator=";"
-                  tableName="appl">
+                  tableName="dls_application">
             <column name="id" type="numeric"/>
             <column name="status" type="string"/>
             <column name="status_description" type="string"/>

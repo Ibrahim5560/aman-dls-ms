@@ -7,18 +7,18 @@
         Added the constraints for entity ApplicationViolation.
     -->
     <changeSet id="20200315142600-2" author="jhipster">
-        
+
         <addForeignKeyConstraint baseColumnNames="service_request_id"
-                                 baseTableName="apvi"
+                                 baseTableName="dls_application_violation"
                                  constraintName="fk_apvi_service_request_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="sere"/>
+                                 referencedTableName="dls_service_request"/>
 
         <addForeignKeyConstraint baseColumnNames="application_id"
-                                 baseTableName="apvi"
+                                 baseTableName="dls_application_violation"
                                  constraintName="fk_apvi_application_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="appl"/>
+                                 referencedTableName="dls_application"/>
 
     </changeSet>
 </databaseChangeLog>

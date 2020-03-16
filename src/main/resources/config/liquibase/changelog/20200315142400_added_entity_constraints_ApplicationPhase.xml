@@ -7,12 +7,12 @@
         Added the constraints for entity ApplicationPhase.
     -->
     <changeSet id="20200315142400-2" author="jhipster">
-        
+
         <addForeignKeyConstraint baseColumnNames="application_id"
-                                 baseTableName="apph"
+                                 baseTableName="dls_application_phase"
                                  constraintName="fk_apph_application_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="appl"/>
+                                 referencedTableName="dls_application"/>
 
     </changeSet>
 </databaseChangeLog>

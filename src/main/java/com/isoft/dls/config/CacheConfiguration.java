@@ -47,6 +47,9 @@ public class CacheConfiguration {
             createCache(cm, com.isoft.dls.domain.ServiceRequest.class.getName());
             createCache(cm, com.isoft.dls.domain.ServiceRequest.class.getName() + ".applicationViolations");
             createCache(cm, com.isoft.dls.domain.ApplicationViolation.class.getName());
+            createCache(cm, com.isoft.dls.domain.SysDomain.class.getName());
+            createCache(cm, com.isoft.dls.domain.SysDomain.class.getName() + ".sysDomainValues");
+            createCache(cm, com.isoft.dls.domain.SysDomainValue.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

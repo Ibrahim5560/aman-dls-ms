@@ -7,12 +7,12 @@
         Added the constraints for entity Application.
     -->
     <changeSet id="20200315142200-2" author="jhipster">
-        
+
         <addForeignKeyConstraint baseColumnNames="application_type_id"
-                                 baseTableName="appl"
+                                 baseTableName="dls_application"
                                  constraintName="fk_appl_application_type_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="apty"/>
+                                 referencedTableName="dls_application_type"/>
 
     </changeSet>
 </databaseChangeLog>

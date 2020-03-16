@@ -6,12 +6,12 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    
+
     <!--
         Added the entity ApplicationViolation.
     -->
     <changeSet id="20200315142600-1" author="jhipster">
-        <createTable tableName="apvi" remarks="ApplicationViolation (dls_application_violation) entity.\n@author Ibrahim Hassanin.">
+        <createTable tableName="dls_application_violation" remarks="ApplicationViolation (dls_application_violation) entity.\n@author Ibrahim Hassanin.">
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -44,7 +44,7 @@
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-        <dropDefaultValue tableName="apvi" columnName="exemption_date" columnDataType="datetime"/>
+        <dropDefaultValue tableName="dls_application_violation" columnName="exemption_date" columnDataType="datetime"/>
     </changeSet>
 
     <changeSet id="20200315142600-1-relations" author="jhipster">
@@ -64,7 +64,7 @@
         <loadData
                   file="config/liquibase/fake-data/apvi.csv"
                   separator=";"
-                  tableName="apvi">
+                  tableName="dls_application_violation">
             <column name="id" type="numeric"/>
             <column name="code" type="string"/>
             <column name="is_eligible_for_exemption" type="boolean"/>

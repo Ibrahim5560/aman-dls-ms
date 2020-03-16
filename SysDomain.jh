@@ -1,0 +1,50 @@
+
+/**
+ * SysDomain (sys_domain) entity.
+ * @author Ibrahim Hassanin.
+ */
+entity SysDomain {
+	code String required unique,
+	description String required,
+	createdBy String required,
+	createdDate Instant required,
+	lastModifiedBy String ,
+	lastModifiedDate Instant 
+}
+
+/**
+ * SysDomainValue (sys_domain_value) entity.
+ * @author Ibrahim Hassanin.
+ */
+entity SysDomainValue {	
+    value String required unique,
+	description String required,
+	sortOrder Integer required unique,
+	domainId Integer required unique,
+	createdBy String required,
+	createdDate Instant required,
+	lastModifiedBy String ,
+	lastModifiedDate Instant 
+}
+
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany { 
+    SysDomain{SysDomainValue} to SysDomainValue
+}
+
+
+// Set pagination options
+paginate SysDomain with pagination
+paginate SysDomainValue with pagination
+
+// Use Data Transfert Objects (DTO)
+dto * with mapstruct
+
+// Set service options 
+service all with serviceImpl
+
+microservice * with amanDLSMS
+filter all
+clientRootFolder SysDomain with amanDLSMS
+clientRootFolder SysDomainValue with amanDLSMS

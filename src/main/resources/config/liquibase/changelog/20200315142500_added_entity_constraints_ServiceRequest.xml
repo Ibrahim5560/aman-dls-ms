@@ -7,18 +7,18 @@
         Added the constraints for entity ServiceRequest.
     -->
     <changeSet id="20200315142500-2" author="jhipster">
-        
+
         <addForeignKeyConstraint baseColumnNames="reversed_by_id"
-                                 baseTableName="sere"
+                                 baseTableName="dls_service_request"
                                  constraintName="fk_sere_reversed_by_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="sere"/>
+                                 referencedTableName="dls_service_request"/>
 
         <addForeignKeyConstraint baseColumnNames="application_id"
-                                 baseTableName="sere"
+                                 baseTableName="dls_service_request"
                                  constraintName="fk_sere_application_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="appl"/>
+                                 referencedTableName="dls_application"/>
 
     </changeSet>
 </databaseChangeLog>
