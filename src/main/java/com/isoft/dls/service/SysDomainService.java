@@ -5,6 +5,7 @@ import com.isoft.dls.service.dto.SysDomainDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -43,4 +44,20 @@ public interface SysDomainService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    /**
+     * Get domain entity by "code"
+     *
+     * @param code the code of the entity
+     * @return the entity
+     */
+    Optional<SysDomainDTO> findOne(String code);
+
+    /**
+     * Get domain entity by "code" with excluded values
+     *
+     * @param code the code of the entity
+     * @return the entity
+     */
+    Optional<SysDomainDTO> findOneWithExcludedValues(String code, List<String> excludedValues);
 }

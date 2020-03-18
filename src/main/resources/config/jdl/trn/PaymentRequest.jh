@@ -1,0 +1,16 @@
+/**
+ * The Payment Request entity.
+ * @author Mohammad Qasim.
+ */
+entity PaymentRequest {
+    applicationId Long required,
+    paymentReference Long required,
+    paymentDate Instant required,
+    paymentMethod String required
+}
+
+// Use Data Transfert Objects (DTO)
+dto * with mapstruct
+
+// Set service options
+service all with serviceImpl

@@ -13,6 +13,20 @@
 # http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 # ===================================================================
 
+bpm:
+    context:
+#        root: https://172.18.125.162:9443
+        root: http://localhost:8080/kie-server/services/rest/server
+        containerId: IExamResultProject_1.0.0-SNAPSHOT                       # MyAppProject_1.0.0-SNAPSHOT        # MyProject_1.0.0-SNAPSHOT
+        processId: IExamResultProject.IExamResultProcess                    # MyProject.RestDTOProcess             # MyProject.HumanTaskProcess
+        username: wbadmin
+        password: wbadmin
+        clientType: Kie                                 # IBM
+
+gateway:
+    context:
+        root: http://localhost:8180/
+
 logging:
   level:
     ROOT: DEBUG

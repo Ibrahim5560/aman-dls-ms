@@ -1,0 +1,34 @@
+/**
+ * ApplicationConfiguration (sys_application_configuration) entity.
+ * @author Ibrahim Hassanin.
+ */
+
+entity ApplicationConfiguration {
+	configKey String unique required,
+	configValue String required,
+	description String required,
+	cached Boolean required,
+	encrypted Boolean required,
+    createdBy String required,
+    createdDate Instant required,
+    lastModifiedBy String ,
+    lastModifiedDate Instant
+}
+
+// 1) Set pagination options
+paginate ApplicationConfiguration with pagination
+
+// 2) DTO
+dto * with mapstruct
+
+// 3) Set service options
+service all with serviceImpl
+
+// 4) microservice
+microservice * with amanDLSMS
+
+// 5) filter
+filter all
+
+// 6) clientRootFolder
+clientRootFolder ApplicationConfiguration with amanDLSMS

@@ -1,5 +1,6 @@
 package com.isoft.dls.service.impl;
 
+import com.isoft.dls.common.errors.SystemException;
 import com.isoft.dls.service.ApplicationPhaseService;
 import com.isoft.dls.domain.ApplicationPhase;
 import com.isoft.dls.repository.ApplicationPhaseRepository;
@@ -84,5 +85,21 @@ public class ApplicationPhaseServiceImpl implements ApplicationPhaseService {
     public void delete(Long id) {
         log.debug("Request to delete ApplicationPhase : {}", id);
         applicationPhaseRepository.deleteById(id);
+    }
+
+    /**
+     * Get First Record of Application Phase By Application Id Order By PhaseSequence Descending
+     * @param applicationId : Application Id
+     *
+     * @return Application Phase Entity
+     */
+    public ApplicationPhaseDTO getFirstByApplicationIdOrderByPhaseSequenceDesc(Long applicationId) {
+        log.debug("Request to get application phase by application and phase type");
+        if (applicationId == null) {
+            throw new SystemException("application Id cannot be null");
+        }
+
+        return applicationPhaseMapper.toDto(applicationPhaseRepository.getFirstByApplication_IdOrderBySequenceDesc(applicationId));
+
     }
 }

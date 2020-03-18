@@ -45,7 +45,7 @@ import com.isoft.dls.domain.enumeration.PhaseType;
 @WithMockUser
 public class ApplicationResourceIT {
 
-    private static final ApplicationStatus DEFAULT_STATUS = ApplicationStatus.NEW;
+    private static final ApplicationStatus DEFAULT_STATUS = ApplicationStatus.DRAFT;
     private static final ApplicationStatus UPDATED_STATUS = ApplicationStatus.UNDER_PROCESSING;
 
     private static final String DEFAULT_STATUS_DESCRIPTION = "AAAAAAAAAA";
@@ -548,7 +548,7 @@ public class ApplicationResourceIT {
             .andExpect(jsonPath("$.[*].lastModifiedBy").value(hasItem(DEFAULT_LAST_MODIFIED_BY)))
             .andExpect(jsonPath("$.[*].lastModifiedDate").value(hasItem(DEFAULT_LAST_MODIFIED_DATE.toString())));
     }
-    
+
     @Test
     @Transactional
     public void getApplication() throws Exception {

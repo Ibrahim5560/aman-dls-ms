@@ -1,5 +1,6 @@
 package com.isoft.dls.web.rest;
 
+import com.isoft.dls.domain.enumeration.PhaseType;
 import com.isoft.dls.service.ApplicationService;
 import com.isoft.dls.web.rest.errors.BadRequestAlertException;
 import com.isoft.dls.service.dto.ApplicationDTO;
@@ -140,5 +141,59 @@ public class ApplicationResource {
         log.debug("REST request to delete Application : {}", id);
         applicationService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
+    }
+
+    /**
+     * PUT  /applications : Updates an existing application phase.
+     *
+     * @param id
+     * @param activePhase
+     * @return the ResponseEntity with status 200 (OK) and with body the updated applicationDTO,
+     * or with status 400 (Bad Request) if the applicationDTO is not valid,
+     * or with status 500 (Internal Server Error) if the applicationDTO couldn't be updated
+     */
+    @PutMapping("/applications/{id}/activePhase/{activePhase}/updateAppPhase")
+    public ResponseEntity<ApplicationDTO> updateAppPhase(@PathVariable Long id, @PathVariable String activePhase) {
+        log.debug("REST request to get Application : {} and active phase {} ", id, activePhase);
+        Optional<ApplicationDTO> applicationDTO = applicationService.findOne(id);
+
+        if (applicationDTO.isPresent() && applicationDTO.get().getId() != null) {
+            String currentActivePhase = applicationDTO.get().getActivePhase().value();
+            if (!currentActivePhase.equals(activePhase)) {
+                ApplicationDTO result = applicationService.updateAppPhaseCriteria(applicationDTO, PhaseType.valueOf(activePhase), null);
+                return ResponseEntity.ok()
+                    .headers(HeaderUtil.createEntityUpdateAlert(applicationName,true,ENTITY_NAME, applicationDTO.get().getId().toString()))
+                    .body(result);
+            }
+        }
+        return null;
+    }
+
+
+    /**
+     * PUT  /applications : Updates an existing application phase.
+     *
+     * @param id
+     * @param activePhase
+     * @param criteria
+     * @return the ResponseEntity with status 200 (OK) and with body the updated applicationDTO,
+     * or with status 400 (Bad Request) if the applicationDTO is not valid,
+     * or with status 500 (Internal Server Error) if the applicationDTO couldn't be updated
+     */
+    @PutMapping("/applications/{id}/activePhase/{activePhase}/criteria/{criteria}/updateAppPhase")
+    public ResponseEntity<ApplicationDTO> updateAppPhaseCriteria(@PathVariable Long id, @PathVariable String activePhase, @PathVariable String criteria) {
+        log.debug("REST request to get Application : {} and active phase {} and criteria {} ", id, activePhase, criteria);
+        Optional<ApplicationDTO> applicationDTO = applicationService.findOne(id);
+
+        if (applicationDTO.isPresent() && applicationDTO.get().getId() != null) {
+            String currentActivePhase = applicationDTO.get().getActivePhase().value();
+            if (!currentActivePhase.equals(activePhase)) {
+                ApplicationDTO result = applicationService.updateAppPhaseCriteria(applicationDTO, PhaseType.valueOf(activePhase), criteria);
+                return ResponseEntity.ok()
+                    .headers(HeaderUtil.createEntityUpdateAlert(applicationName,true,ENTITY_NAME, applicationDTO.get().getId().toString()))
+                    .body(result);
+            }
+        }
+        return null;
     }
 }

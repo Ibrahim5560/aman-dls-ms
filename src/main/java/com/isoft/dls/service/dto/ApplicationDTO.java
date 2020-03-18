@@ -1,10 +1,14 @@
 package com.isoft.dls.service.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import java.time.Instant;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
+
 import com.isoft.dls.domain.enumeration.ApplicationStatus;
 import com.isoft.dls.domain.enumeration.PhaseType;
 
@@ -13,12 +17,12 @@ import com.isoft.dls.domain.enumeration.PhaseType;
  */
 @ApiModel(description = "Application (dls_application) entity.\n@author Ibrahim Hassanin.")
 public class ApplicationDTO implements Serializable {
-    
+
     private Long id;
 
     @NotNull
     private ApplicationStatus status;
-
+    //TODO : jsonType
     @NotNull
     private String statusDescription;
 
@@ -38,7 +42,7 @@ public class ApplicationDTO implements Serializable {
 
     private Instant rejectionDate;
 
-    
+
     private Long processInstanceId;
 
     @NotNull
@@ -61,13 +65,13 @@ public class ApplicationDTO implements Serializable {
 
     @NotNull
     private String userType;
-
+    //TODO : jsonType
     @NotNull
     private String userTypeDescription;
 
     @NotNull
     private String userRole;
-
+    //TODO : jsonType
     private String applicationCriteria;
 
     private String persona;
@@ -84,9 +88,19 @@ public class ApplicationDTO implements Serializable {
 
     private Instant lastModifiedDate;
 
-
     private Long applicationTypeId;
-    
+
+    @JsonProperty("serviceRequests")
+    private Set<ServiceRequestDTO> serviceRequests = new HashSet<>();
+
+    public Set<ServiceRequestDTO> getServiceRequests() {
+        return serviceRequests;
+    }
+
+    public void setServiceRequests(Set<ServiceRequestDTO> serviceRequests) {
+        this.serviceRequests = serviceRequests;
+    }
+
     public Long getId() {
         return id;
     }

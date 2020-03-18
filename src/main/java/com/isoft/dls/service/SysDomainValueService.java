@@ -1,5 +1,6 @@
 package com.isoft.dls.service;
 
+import com.isoft.dls.domain.type.MultilingualJsonType;
 import com.isoft.dls.service.dto.SysDomainValueDTO;
 
 import org.springframework.data.domain.Page;
@@ -43,4 +44,23 @@ public interface SysDomainValueService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    /**
+     * Get one domainValue by Value and domain id.
+     *
+     * @param value the value of the entity
+     * @param domainCode the Domain Code
+     * @return the multilingual json type of the the given value
+     */
+    MultilingualJsonType getDomainValueDescription(String value, String domainCode);
+
+
+    /**
+     * Get one Domain Value by Value and domain code.
+     *
+     * @param value the value of the entity
+     * @param domainCode the Domain Code
+     * @return the entity
+     */
+    MultilingualJsonType getDomainValue(String value, String domainCode);
 }

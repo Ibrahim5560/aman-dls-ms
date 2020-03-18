@@ -1,9 +1,12 @@
 package com.isoft.dls.service.dto;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import java.time.Instant;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A DTO for the {@link com.isoft.dls.domain.SysDomain} entity.
@@ -29,6 +32,18 @@ public class SysDomainDTO implements Serializable {
 
     private Instant lastModifiedDate;
 
+
+
+    @JsonProperty("domainValues")
+    private Set<SysDomainValueDTO> domainValues = new HashSet<>();
+
+    public Set<SysDomainValueDTO> getDomainValues() {
+        return domainValues;
+    }
+
+    public void setDomainValues(Set<SysDomainValueDTO> domainValues) {
+        this.domainValues = domainValues;
+    }
 
     public Long getId() {
         return id;

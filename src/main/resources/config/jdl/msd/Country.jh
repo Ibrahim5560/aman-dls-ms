@@ -1,0 +1,17 @@
+/**
+ * The Country entity.
+ * @author Tariq Abu Amireh
+ */
+entity Country {
+    code String unique required,
+    name String required,
+    sortOrder Integer unique required
+}
+
+// Set pagination options
+paginate Country with pagination
+// Use Data Transfert Objects (DTO)
+dto * with mapstruct
+
+// Set service options
+service all with serviceImpl

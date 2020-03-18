@@ -1,0 +1,16 @@
+/**
+ * Soap Log entity.
+ * @author Yousef.
+ */
+entity SoapLog {
+	type Integer,
+	endPoint String,
+    operation String,
+    soapRequest TextBlob,
+    soapResponse TextBlob,
+    technicalRemarks String
+}
+
+service all with serviceImpl
+
+dto * with mapstruct

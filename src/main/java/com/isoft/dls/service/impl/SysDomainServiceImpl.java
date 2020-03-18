@@ -1,9 +1,11 @@
 package com.isoft.dls.service.impl;
 
+import com.isoft.dls.common.util.StringUtil;
 import com.isoft.dls.service.SysDomainService;
 import com.isoft.dls.domain.SysDomain;
 import com.isoft.dls.repository.SysDomainRepository;
 import com.isoft.dls.service.dto.SysDomainDTO;
+import com.isoft.dls.service.dto.SysDomainValueDTO;
 import com.isoft.dls.service.mapper.SysDomainMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +15,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * Service Implementation for managing {@link SysDomain}.
@@ -85,5 +90,50 @@ public class SysDomainServiceImpl implements SysDomainService {
     public void delete(Long id) {
         log.debug("Request to delete SysDomain : {}", id);
         sysDomainRepository.deleteById(id);
+    }
+
+    /**
+     * Get domain entity by "code"
+     *
+     * @param code the code of the entity
+     * @return the entity
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<SysDomainDTO> findOne(String code) {
+        log.debug("Request to get Domain by code : {} ", code);
+        return sysDomainRepository.findByCode(StringUtil.upperCase(code))
+            .map(sysDomainMapper::toDto);
+    }
+
+    /**
+     * Get domain entity by "code" with excluded values
+     *
+     * @param code the code of the entity
+     * @return the entity
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<SysDomainDTO> findOneWithExcludedValues(String code, List<String> excludedValues) {
+        log.debug("Request to get Domain with excluded values by code : {} ", code);
+
+        Optional<SysDomainDTO> domainDTO = sysDomainRepository.findByCode(StringUtil.upperCase(code))
+            .map(sysDomainMapper::toDto);
+
+        Set<SysDomainValueDTO> filteredDomainValues = new HashSet<>();
+        if(domainDTO.isPresent()) {
+            SysDomainDTO domain = domainDTO.get();
+            Set<SysDomainValueDTO> domainValues = domain.getDomainValues();
+            domainValues.forEach(domainValueDTO -> {
+                if(!excludedValues.contains(domainValueDTO.getValue())) {
+                    filteredDomainValues.add(domainValueDTO);
+                }
+            });
+        }
+        if(domainDTO.isPresent()) {
+            domainDTO.get().setDomainValues(filteredDomainValues);
+        }
+
+        return domainDTO;
     }
 }

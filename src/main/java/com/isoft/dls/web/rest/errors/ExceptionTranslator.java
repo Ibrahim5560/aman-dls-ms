@@ -89,14 +89,14 @@ public class ExceptionTranslator implements ProblemHandling, SecurityAdviceTrait
         return create(ex, problem, request);
     }
 
-    @ExceptionHandler
-    public ResponseEntity<Problem> handleBadRequestAlertException(BadRequestAlertException ex, NativeWebRequest request) {
-        return create(
-            ex,
-            request,
-            HeaderUtil.createFailureAlert(applicationName, true, ex.getEntityName(), ex.getErrorKey(), ex.getMessage())
-        );
-    }
+//    @ExceptionHandler
+//    public ResponseEntity<Problem> handleBadRequestAlertException(BadRequestAlertException ex, NativeWebRequest request) {
+//        return create(
+//            ex,
+//            request,
+//            HeaderUtil.createFailureAlert(applicationName, true, ex.getEntityName(), ex.getErrorKey(), ex.getMessage())
+//        );
+//    }
 
     @ExceptionHandler
     public ResponseEntity<Problem> handleConcurrencyFailure(ConcurrencyFailureException ex, NativeWebRequest request) {

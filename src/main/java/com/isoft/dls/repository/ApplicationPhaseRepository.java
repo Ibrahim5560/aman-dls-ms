@@ -11,4 +11,11 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface ApplicationPhaseRepository extends JpaRepository<ApplicationPhase, Long>, JpaSpecificationExecutor<ApplicationPhase> {
+    /**
+     * Get First Record of Application Phase By Application Id Order By PhaseSequence Descending
+     * @param applicationId : Application Id
+     *
+     * @return Application Phase Entity
+     */
+    ApplicationPhase getFirstByApplication_IdOrderBySequenceDesc(Long applicationId);
 }

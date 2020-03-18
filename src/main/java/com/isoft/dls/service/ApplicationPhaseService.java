@@ -42,4 +42,12 @@ public interface ApplicationPhaseService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    /**
+     * Get First Record of Application Phase By Application Id Order By PhaseSequence Descending
+     * @param applicationId : Application Id
+     *
+     * @return Application Phase Entity
+     */
+    ApplicationPhaseDTO getFirstByApplicationIdOrderByPhaseSequenceDesc(Long applicationId);
 }

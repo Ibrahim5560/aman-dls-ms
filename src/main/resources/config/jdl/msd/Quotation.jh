@@ -1,0 +1,17 @@
+/**
+ * The Quotation entity.
+ * @author Sherif Thabet.
+ */
+entity Quotation {
+    tradeLicenseNo String required,
+    licenseCategoryCode String required,
+    numOfClasses Integer required,
+    price Double required,
+    vipPrice Double required
+}
+
+// Use Data Transfert Objects (DTO)
+dto * with mapstruct
+
+// Set service options
+service all with serviceImpl

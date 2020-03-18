@@ -1,5 +1,6 @@
 package com.isoft.dls.service;
 
+import com.isoft.dls.domain.enumeration.PhaseType;
 import com.isoft.dls.service.dto.ApplicationDTO;
 
 import org.springframework.data.domain.Page;
@@ -42,4 +43,14 @@ public interface ApplicationService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    /**
+     * update App Phase Criteria
+     *
+     * @param applicationDTO
+     * @param phase
+     * @param criteria
+     * @return
+     */
+    ApplicationDTO updateAppPhaseCriteria(Optional<ApplicationDTO> applicationDTO, PhaseType phase, String criteria);
 }
