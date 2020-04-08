@@ -1,0 +1,60 @@
+{
+    "name": "ApplicationPhase",
+    "fields": [
+        {
+            "fieldName": "type",
+            "fieldType": "PhaseType",
+            "fieldValues": "CUSTOMER_ELIGIBILITY,DRIVING_LEARNING_FILE_PROCESSING,DRIVING_LEARNING_FILE_AUDIT,READY_FOR_CONTRACT_SIGN,EYE_TEST,THEORY_LECTURE,KNOWLEDGE_TEST,PRACTICAL_TRAINING,YARD_TEST,ADVANCED_PRACTICAL_TRAINING,ROAD_TEST,PRINT_LICENSE,APPLICATION_REJECTION,EXEMPTION_AUDITING,GET_REQUEST_DETAILS,CREATE_USER_DELIVERY,HUMAN_TASK_APPROVAL",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "sequence",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "startDate",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "endDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "persona",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "application",
+            "otherEntityRelationshipName": "applicationPhase",
+            "relationshipName": "application",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200315142400",
+    "javadoc": "ApplicationPhase (dls_application_phase) entity.\\n@author Ibrahim Hassanin.",
+    "entityTableName": "apph",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "amanDLSMS",
+    "applications": "*",
+    "microserviceName": "amanDLSMS"
+}

@@ -13,6 +13,20 @@
 # http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 # ===================================================================
 
+bpm:
+    context:
+#        root: https://172.18.125.162:9443
+        root: http://localhost:8080/kie-server/services/rest/server
+        containerId: IExamResultProject_1.0.0-SNAPSHOT                       # MyAppProject_1.0.0-SNAPSHOT        # MyProject_1.0.0-SNAPSHOT
+        processId: IExamResultProject.IExamResultProcess                    # MyProject.RestDTOProcess             # MyProject.HumanTaskProcess
+        username: wbadmin
+        password: wbadmin
+        clientType: Kie                                 # IBM
+
+gateway:
+    context:
+        root: http://localhost:8180/
+
 logging:
   level:
     ROOT: DEBUG
@@ -45,8 +59,8 @@ spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:postgresql://localhost:5432/amanDLSMS
-    username: amanDLSMS
-    password:
+    username: postgres
+    password: admin
     hikari:
       poolName: Hikari
       auto-commit: false
@@ -106,8 +120,8 @@ jhipster:
   #     max-age: 1800
   security:
     client-authorization:
-      access-token-uri: http://../uaa/oauth/token
-      token-service-id: ../uaa
+      access-token-uri: http://uaa/oauth/token
+      token-service-id: uaa
       client-id: internal
       client-secret: internal
   mail: # specific JHipster mail property, for standard properties see MailProperties
@@ -127,7 +141,7 @@ jhipster:
     retention-period: 30 # Number of days before audit events are deleted.
 oauth2:
   signature-verification:
-    public-key-endpoint-uri: http://../uaa/oauth/token_key
+    public-key-endpoint-uri: http://uaa/oauth/token_key
     #ttl for public keys to verify JWT tokens (in ms)
     ttl: 3600000
     #max. rate at which public keys will be fetched (in ms)

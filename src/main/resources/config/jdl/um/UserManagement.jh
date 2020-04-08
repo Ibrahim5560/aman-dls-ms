@@ -1,0 +1,383 @@
+
+/**
+ * UserProfile (um_user_profile) entity.
+ * @author Mena Emiel/Tariq Abu Amireh.
+ */
+entity UserProfile (uspr) {
+	username String unique,
+    userType UserType required,
+    status UserStatus required,
+    englishFullName String required,
+	arabicFullName String required,
+	mobileNo String required,
+    mobileVerificationDate Instant,
+	email String required,
+    emailVerificationDate Instant,
+	gender Gender required,
+    preferedLanguage String required,
+    image ImageBlob,
+    lastSyncDate Instant,
+    lastAccessDate Instant
+}
+
+/**
+ * Customer (um_customer) entity.
+ * @author Mena Emiel/Tariq Abu Amireh.
+ */
+entity Customer (cust) {
+	trafficCodeNo String unique,
+    issuedByApplicationNo Long,
+	birthdate LocalDate required,
+    handicaped Boolean required,
+    vip Boolean required,
+	passportNo String,
+	passportExpiryDate Instant,
+	immigrationFileType ImmigrationFileType,
+	residencyNo String unique,
+	residencyExpiryDate Instant,
+	sponsorType SponsorType,
+	englishSponsorName String,
+    arabicSponsorName String,
+	unifiedNo String unique,
+	eidNumber String unique required,
+    eidExpiryDate Instant required,
+    smsNotification Boolean required,
+    emailNotification Boolean required,
+    pushNotification Boolean required
+}
+
+/**
+ * DeliveryInformation (um_delivery_information) entity.
+ * @author Mena Emiel/Tariq Abu Amireh.
+ */
+entity DeliveryInformation (dein) {
+	addressType AddressType required,
+    addressName String,
+	address TextBlob required,
+    longitude String,
+    latitude String,
+    makaniNo String,
+    mobileNo String required,
+    landlineNo String,
+    email String,
+    defaultAddress Boolean required
+}
+
+/**
+ * Employee (um_employee) entity.
+ * @author Mena Emiel/Tariq Abu Amireh.
+ */
+entity Employee (empl) {
+	employeeNo String unique required,
+    englishFullName String required,
+	arabicFullName String required,
+    eidNumber String unique required,
+    eidExpiryDate Instant required,
+    jobTitle String required
+}
+
+/**
+ * Department (msd_division) entity.
+ * @author Mena Emiel/Tariq Abu Amireh.
+ */
+entity Division (divi) {
+	divisionNo String unique required,
+	name TextBlob required,
+    status DivisionStatus required,
+    sortOrder Integer unique required
+
+}
+
+/**
+ * Department (msd_department) entity.
+ * @author Mena Emiel/Tariq Abu Amireh.
+ */
+entity Department (depa) {
+	departmentNo String unique required,
+	name String required,
+    status DepartmentStatus required,
+    sortOrder Integer required
+}
+
+/**
+ * Corporate (um_corporate) entity.
+ * @author Mena Emiel/Tariq Abu Amireh.
+ */
+entity Corporate (corp) {
+	trafficCodeNo String unique,
+	tradeLicenseNo String unique required,
+    tradeLicenseExpiryDate Instant required,
+    englishName String unique required,
+    arabicName String unique required,
+    corporateType CorporateType required,
+    lastSyncDate Instant,
+    status CorporateStatus required
+}
+
+**
+ * Corporate (um_corporate_staff) entity.
+ * @author Rami Nassar.
+ */
+entity CorporateStaff (cost) {
+	name String required,
+	username String required,
+    mobileNo String required,
+    email String required,
+    status String required
+}
+
+/**
+ * Agreement (msd_agreement) entity.
+ * @author Mena Emiel/Tariq Abu Amireh.
+ */
+entity Agreement (agre) {
+	code String unique required,
+    status AgreementStatus required,
+    englishName String unique required,
+    arabicName String unique required,
+    lastSyncDate Instant
+}
+
+/**
+ * CorporateAgreement (um_corporate_agreement) entity.
+ * @author Mena Emiel/Tariq Abu Amireh.
+ */
+entity CorporateAgreement (coag) {
+	status CorporateAgreementStatus required
+}
+
+/**
+ * Group (um_group) entity.
+ * @author Mena Emiel/Tariq Abu Amireh.
+ */
+entity Group (grou) {
+	code String unique required,
+    name TextBlob required,
+    groupType GroupType required,
+    systemType SystemType required
+}
+
+/**
+ * Authority (um_authority) entity.
+ * @author Mena Emiel/Tariq Abu Amireh.
+ */
+entity Authority (auth) {
+	code String unique required,
+    name TextBlob required,
+    systemType SystemType required
+}
+
+/**
+ * GroupAuthority (um_group_authority) entity.
+ * @author Mena Emiel/Tariq Abu Amireh.
+ */
+entity GroupAuthority (grau) {
+    status GroupAuthorityStatus required,
+    startDate Instant,
+    endDate Instant
+}
+
+/**
+ * Country entity.
+ * @author Mena Emiel/Tariq Abu Amireh.
+ */
+entity Country {
+	code String unique required
+}
+
+/**
+ * FedexLocation (msd_fedex_location) entity.
+ * @author Mena Emiel/Tariq Abu Amireh.
+ */
+entity FedexLocation (felo) {
+	ursaCode String required,
+    routingCode String required,
+    name TextBlob required
+
+}
+
+/**
+ * Profession entity.
+ * @author Mena Emiel/Tariq Abu Amireh.
+ */
+entity Profession {
+	code String
+}
+
+/**
+ * UserAuditEvent (sys_user_audit_event) entity.
+ * @author Mena Emiel/Tariq Abu Amireh.
+ */
+entity UserAuditEvent (usae) {
+	principal String,
+    eventDate Instant required,
+    eventType UserAuditEventType required,
+    accessToken TextBlob,
+    userAgent String,
+    remoteAddress String,
+    remoteHost String,
+	remotePort String,
+    protocol String
+}
+
+/**
+ * UserAuditEventData (sys_user_audit_event_data) entity.
+ * @author Mena Emiel/Tariq Abu Amireh.
+ */
+entity UserAuditEventData (uaed) {
+	name String required,
+  	eventValue TextBlob required
+}
+
+enum UserAuditEventType {
+	AUTHENTICATION_SUCCESS,
+    AUTHENTICATION_FAILURE
+}
+
+enum UserType {
+    SYSTEM_ADMIN,
+    SYSTEM,
+    IAM,
+    ANONYMOUS,
+    EMPLOYEE,
+    VERIFIED,
+    BPM
+}
+
+enum SystemUserType {
+    SYSTEM_ADMIN,
+    SYSTEM
+}
+
+enum CorporateType {
+	MAIN,
+    BRANCH
+}
+
+enum GroupType {
+	CUSTOMER,
+    EMPLOYEE,
+    CORPORATE,
+    AUTHORIZED_AGENT,
+    SYSTEM
+}
+
+enum Gender {
+    MALE,
+    FEMALE
+}
+
+enum ImmigrationFileType {
+    VISITOR,
+    RESIDENT,
+    CITIZEN
+}
+
+enum SponsorType {
+	COMPANY,
+    PERSON
+}
+
+enum UserStatus {
+	ACTIVE,
+    INACTIVE
+}
+
+enum SystemUserStatus{
+	ACTIVE,
+    INACTIVE
+}
+
+enum ActivityStatus {
+	ACTIVE,
+    INACTIVE,
+    DRAFT
+}
+
+enum CorporateActivityStatus {
+	ACTIVE,
+    INACTIVE
+}
+
+enum DepartmentStatus {
+	ACTIVE,
+    INACTIVE
+}
+
+enum GroupAuthorityStatus {
+	ACTIVE,
+    INACTIVE
+}
+
+enum DivisionStatus {
+	ACTIVE,
+    INACTIVE
+}
+
+enum AddressType{
+	HOUSE,
+    APARTMENT,
+    OFFICE
+}
+
+enum SystemType {
+	DLS,
+    VLS,
+    CTLS
+}
+
+enum CorporateStatus {
+	ACTIVE,
+    INACTIVE
+}
+relationship OneToMany {
+    Authority{groupAuthority} to GroupAuthority{authority},
+    Group{groupAuthority} to GroupAuthority{group},
+    FedexLocation{deliveryInformation} to DeliveryInformation{fedexLocation},
+    Department{division} to Division{department},
+    Division{employee} to Employee{division},
+    Agreement{corporateAgreement} to CorporateAgreement{agreement},
+    Corporate{corporateAgreement} to CorporateAgreement{corporate},
+    UserAuditEvent{userAuditEventData} to UserAuditEventData{userAuditEvent}
+}
+
+relationship ManyToOne {
+	UserProfile{nationality} to Country,
+    UserProfile{profession} to Profession,
+    UserProfile{group} to Group,
+    Corporate{group} to Group,
+    CorporateStaff{corporate} to Corporate,
+    DeliveryInformation{userProfile} to UserProfile,
+    FedexLocation{state} to State,
+    Customer{residencySource} to State,
+    Corporate{parentCorporate} to Corporate
+}
+
+relationship OneToOne {
+    Customer{userProfile} to UserProfile,
+    Employee{userProfile} to UserProfile
+}
+
+// Set pagination options
+paginate UserProfile with pagination
+paginate Customer with pagination
+paginate DeliveryInformation with pagination
+paginate Employee with pagination
+paginate Division with pagination
+paginate Department with pagination
+paginate Corporate with pagination
+paginate Agreement with pagination
+paginate CorporateAgreement with pagination
+paginate Group with pagination
+paginate Authority with pagination
+paginate GroupAuthority with pagination
+paginate FedexLocation with pagination
+paginate UserAuditEvent with pagination
+paginate UserAuditEventData with pagination
+paginate CorporateStaff with pagination
+
+// Use Data Transfert Objects (DTO)
+dto * with mapstruct
+
+// Set service options
+service all with serviceImpl

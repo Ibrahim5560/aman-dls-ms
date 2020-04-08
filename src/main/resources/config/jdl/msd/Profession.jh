@@ -1,0 +1,18 @@
+/**
+ * The Profession entity.
+ * @author Tariq Abu Amireh
+ */
+entity Profession {
+    code String unique required,
+    name String required,
+    dlsGroupCode String,
+    sortOrder Integer unique required
+}
+
+// Set pagination options
+paginate Profession with pagination
+// Use Data Transfert Objects (DTO)
+dto * with mapstruct
+
+// Set service options
+service all with serviceImpl

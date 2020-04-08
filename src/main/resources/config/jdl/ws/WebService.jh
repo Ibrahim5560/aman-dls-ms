@@ -1,0 +1,80 @@
+/**
+ * WebService (ws_web_service) entity.
+ * @author Ibrahim Hassanin.
+ */
+entity WebService (ws_web_service) {
+    endPoint String unique,
+    name WebServiceName required,
+    enabled Boolean,
+    technicalRemarks String,
+    createdBy String required,
+    createdDate Instant required,
+    lastModifiedBy String ,
+    lastModifiedDate Instant
+}
+
+/**
+ * WebServiceProperty (ws_web_service_property) entity.
+ * @author Ibrahim Hassanin.
+ */
+entity WebServiceProperty (ws_web_service_property) {
+    name WebServicePropertyName required,
+    value String,
+    technicalRemarks String,
+    createdBy String required,
+    createdDate Instant required,
+    lastModifiedBy String ,
+    lastModifiedDate Instant
+}
+
+enum WebServiceName {
+    INITIATE_PROCESS,
+    USER_INBOX,
+    ACCEPT_CONTRACT,
+    FINISH_TASK,
+    CLAIM_TASK,
+    PROCESS_DETAILS,
+    ACTIVE_TASK,
+    TASK_DETAILS,
+    PERSONA_CATEGORY,
+    RULE_VALIDATION,
+    CUSTOMER_DEMOGRAPHIC,
+    CREATE_TRAFFIC_FILE,
+    PAY_EWALLET,
+    UTS_CLIENT
+}
+
+enum WebServicePropertyName {
+	USERNAME,
+    PASSWORD,
+    BPM_BPD_ID,
+    BPM_BRANCH_ID,
+    BPM_SNAPSHOT_ID,
+    TIMEOUT
+}
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	WebService{webServiceProperty} to WebServiceProperty
+}
+
+// 1) Set pagination options
+paginate WebService with pagination
+paginate WebServiceProperty with pagination
+
+// 2) DTO
+dto * with mapstruct
+
+// 3) Set service options
+service all with serviceImpl
+
+// 4) microservice
+microservice * with amanDLSMS
+
+// 5) filter
+filter all
+
+// 6) clientRootFolder
+clientRootFolder WebService with amanDLSMS
+clientRootFolder WebServiceProperty with amanDLSMS
+

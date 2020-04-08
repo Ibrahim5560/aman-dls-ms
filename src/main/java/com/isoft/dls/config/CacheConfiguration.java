@@ -38,6 +38,24 @@ public class CacheConfiguration {
     @Bean
     public JCacheManagerCustomizer cacheManagerCustomizer() {
         return cm -> {
+            createCache(cm, com.isoft.dls.domain.Application.class.getName());
+            createCache(cm, com.isoft.dls.domain.Application.class.getName() + ".applicationPhases");
+            createCache(cm, com.isoft.dls.domain.Application.class.getName() + ".serviceRequests");
+            createCache(cm, com.isoft.dls.domain.Application.class.getName() + ".applicationViolations");
+            createCache(cm, com.isoft.dls.domain.ApplicationType.class.getName());
+            createCache(cm, com.isoft.dls.domain.ApplicationPhase.class.getName());
+            createCache(cm, com.isoft.dls.domain.ServiceRequest.class.getName());
+            createCache(cm, com.isoft.dls.domain.ServiceRequest.class.getName() + ".applicationViolations");
+            createCache(cm, com.isoft.dls.domain.ApplicationViolation.class.getName());
+            createCache(cm, com.isoft.dls.domain.SysDomain.class.getName());
+            createCache(cm, com.isoft.dls.domain.SysDomain.class.getName() + ".sysDomainValues");
+            createCache(cm, com.isoft.dls.domain.SysDomainValue.class.getName());
+            createCache(cm, com.isoft.dls.domain.WebService.class.getName());
+            createCache(cm, com.isoft.dls.domain.WebService.class.getName() + ".webServiceProperties");
+            createCache(cm, com.isoft.dls.domain.WebServiceProperty.class.getName());
+            createCache(cm, com.isoft.dls.domain.ApplicationConfiguration.class.getName());
+            createCache(cm, com.isoft.dls.domain.ErrorLog.class.getName());
+            createCache(cm, com.isoft.dls.domain.MimeType.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }
